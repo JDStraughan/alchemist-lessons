@@ -50,7 +50,7 @@ defmodule MinimalTodo do
 
   def get_command(data) do
     prompt = "Type the first letter of the command you want to execute\n"
-    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV\n""
+    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV\n"
 
     command = IO.gets(prompt)
       |> String.trim()
