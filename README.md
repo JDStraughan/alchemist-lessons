@@ -1,5 +1,5 @@
 # alchemist-lessons
-These are myy solutions to Elixir course on https://alchemist.camp/
+These are my solutions to Elixir course on https://alchemist.camp/
 
 It's been a long time since I slung some code, and it was all OO
 
