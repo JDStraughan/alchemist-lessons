@@ -1,13 +1,49 @@
 defmodule MinimalTodo do
   def start do
-    # ask user for filename
+    input = IO.gets("Create a new list? (y/n)? ")
+      |> String.trim()
+      |> String.downcase()
+    if input == "y" do
+      create_initial_todo() |> get_command()
+    else
+      load_csv()
+    end
+  end
+
+  def create_initial_todo() do
+    first_todo = IO.gets("What is our first item on the list?\n")
+    Map.put(%{}, first_todo, %{
+      "Date Added" => "Dec 31",
+      "Notes" => "Notes go here",
+      "Priority" => "0",
+      "Urgency" => "0"
+    })
+  end
+
+  def load_csv() do
     filename = IO.gets("Name of .csv file to load: ") |> String.trim
     read(filename)
       |> parse()
       |> get_command()
+  end
 
-    # load file
-    # save file
+  def get_command(data) do
+    prompt = "Type the first letter of the command you want to execute\n"
+    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV [Q]uit\n"
+
+    command = IO.gets(prompt)
+      |> String.trim()
+      |> String.downcase()
+
+      case command do
+        "r" -> show_todos(data)
+        "a" -> add_todo(data)
+        "d" -> delete_todo(data)
+        "s" -> save(data)
+        "l" -> load_csv()
+        "q" -> "Goodbye!"
+        _   -> get_command(data)
+      end
   end
 
   def read(filename) do
@@ -17,6 +53,32 @@ defmodule MinimalTodo do
                            IO.puts ~s(Error: #{:file.format_error reason})
                            start()
     end
+  end
+
+  def save(data) do
+    prepare_csv(data)
+      |> save_csv()
+    get_command(data)
+  end
+
+  def save_csv(data) do
+    filename = IO.gets("Name of .csv file to save: ") |> String.trim
+    case File.write(filename, data) do
+      :ok               -> IO.puts("CSV Saved")
+      {:error, reason}  -> IO.puts ~s(Could not write file '#{filename}')
+                           IO.puts ~s(Error: #{:file.format_error reason})
+                           get_command(data)
+    end
+  end
+
+  def prepare_csv(data) do
+    headers = ["Item" | get_fields(data)]
+    item_rows = Enum.map(Map.keys(data), fn item ->
+      [item | Map.values(data[item])]
+    end)
+    [headers | item_rows]
+      |> Enum.map(&(Enum.join(&1, ",")))
+      |> Enum.join("\n")
   end
 
   def parse(body) do
@@ -45,23 +107,6 @@ defmodule MinimalTodo do
     if next_command? do
       get_command(data)
     end
-  end
-
-  def get_command(data) do
-    prompt = "Type the first letter of the command you want to execute\n"
-    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV [Q]uit\n"
-
-    command = IO.gets(prompt)
-      |> String.trim()
-      |> String.downcase()
-
-      case command do
-        "r" -> show_todos(data)
-        "a" -> add_todo(data)
-        "d" -> delete_todo(data)
-        "q" -> "Goodbye!"
-        _   -> get_command(data)
-      end
   end
 
   def delete_todo(data) do
@@ -100,6 +145,10 @@ defmodule MinimalTodo do
         IO.puts("UPDATED Todos:\n")
         show_todos(new_list)
     end
+  end
+
+  def get_fields(data) do
+    data[hd Map.keys data] |> Map.keys
   end
 
 end
