@@ -1,21 +1,22 @@
 # Caboose
 
-**TODO: Add description**
+**Kinda like the tail function in *nix**
 
-## Installation
+## Wassup here?
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `caboose` to your list of dependencies in `mix.exs`:
+A simple Unix tail clone
 
-```elixir
-def deps do
-  [
-    {:caboose, "~> 0.1.0"}
-  ]
-end
-```
+## Why is this here?
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/caboose>.
+I'm learniing Elixir and following the lessons at https://alchemist.camp/
+
+## Which lesson is this one?
+
+Can be found here: https://alchemist.camp/episodes/caboose-tail-clone
+
+## What is the airspeed velocity of an unladen swallow?
+
+African or a European?
+
+## AAAAAAARRRRRRRGGGGGGGHHHHHHHHHH
 

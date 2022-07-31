@@ -1,21 +1,21 @@
 # WordCount
 
-**TODO: Add description**
+**Kinda like the wc function in *nix**
 
-## Installation
+## Wassup here?
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `word_count` to your list of dependencies in `mix.exs`:
+A simple command line script that counts the words in a file, much like the Unix command `wc`.
 
-```elixir
-def deps do
-  [
-    {:word_count, "~> 0.1.0"}
-  ]
-end
-```
+## Why is this here?
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/word_count>.
+I'm learniing Elixir and following the lessons at https://alchemist.camp/
 
+## Which lesson is this one?
+
+Can be found here: https://alchemist.camp/episodes/word-count
+
+## What is the airspeed velocity of an unladen swallow?
+
+African or a European?
+
+## AAAAAAARRRRRRRGGGGGGGHHHHHHHHHH

@@ -1,21 +1,21 @@
 # StatWatch
 
-**TODO: Add description**
+**YouTube API Stat Watcher from Alchemist Camp**
 
-## Installation
+## Wassup here?
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `stat_watch` to your list of dependencies in `mix.exs`:
+This is a worker to log stats from a YouTube’s API
 
-```elixir
-def deps do
-  [
-    {:stat_watch, "~> 0.1.0"}
-  ]
-end
-```
+## Why is this here?
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/stat_watch>.
+I'm learniing Elixir and following the lessons at https://alchemist.camp/
 
+## Which lesson is this one?
+
+Can be found here: https://alchemist.camp/episodes/statwatch-worker
+
+## What is the airspeed velocity of an unladen swallow?
+
+African or a European?
+
+## AAAAAAARRRRRRRGGGGGGGHHHHHHHHHH
