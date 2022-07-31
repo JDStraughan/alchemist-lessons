@@ -6,7 +6,6 @@ defmodule MinimalTodo do
       |> parse()
       |> get_command()
 
-    # add todos
     # load file
     # save file
   end
@@ -50,17 +49,18 @@ defmodule MinimalTodo do
 
   def get_command(data) do
     prompt = "Type the first letter of the command you want to execute\n"
-    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV\n"
+    <> "[R]ead Todos  [A]dd Todo  [D]elete Todo [L]oad CSV  [S]ave CSV [Q]uit\n"
 
     command = IO.gets(prompt)
       |> String.trim()
       |> String.downcase()
 
       case command do
-        "r"     -> show_todos(data)
-        "d"     -> delete_todo(data)
-        "q"     -> "Goodbye!"
-        _       -> get_command(data)
+        "r" -> show_todos(data)
+        "a" -> add_todo(data)
+        "d" -> delete_todo(data)
+        "q" -> "Goodbye!"
+        _   -> get_command(data)
       end
   end
 
@@ -76,6 +76,29 @@ defmodule MinimalTodo do
       IO.puts(~s{There is no todo named "#{todo}"!})
       show_todos(data, false)
       delete_todo(data)
+    end
+  end
+
+  def add_todo(data) do
+    todo = IO.gets("Enter todo to add:\n")
+      |> String.trim()
+    cond do
+      Map.has_key?(data, todo) ->
+        IO.puts("You already have that todo, remember?")
+        add_todo(data)
+      todo == "" ->
+        IO.puts("You can't have empty todos!")
+        add_todo(data)
+      true ->
+        new_list = Map.put(data, todo, %{
+          "Date Added" => "Dec 31",
+          "Notes" => "Notes go here",
+          "Priority" => "0",
+          "Urgency" => "0"
+        })
+        IO.puts("Added!\n")
+        IO.puts("UPDATED Todos:\n")
+        show_todos(new_list)
     end
   end
 
