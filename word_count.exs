@@ -1,3 +1,7 @@
 filename = IO.gets("File to count words: ") |> String.trim
-body = File.read!(filename) |> String.split()
-IO.inspect body
+File.read!(filename)
+  |> String.split(~r{\\n|[^\w']+})
+  |> Enum.filter(fn x -> x != "" end)
+  |> Enum.count
+  |> IO.puts
+  |> IO.inspect
